@@ -599,6 +599,10 @@ export default function AddonsConfigPage() {
 					</Section>
 					<Section title={t('AddonsConfig:on-board-led-configuration-label')}>
 						<div
+							id="BoardLedAddonEnabledPlaceholder">
+							<p>{t('AddonsConfig:on-board-led-mode-placeholder-text')}</p>
+						</div>
+						<div
 							id="BoardLedAddonEnabledOptions"
 							hidden={!values.BoardLedAddonEnabled}>
 							<FormSelect

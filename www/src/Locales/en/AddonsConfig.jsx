@@ -6,6 +6,7 @@ export default {
 	'bootsel-button-pin-label': 'BOOTSEL Button',
 	'on-board-led-configuration-label': 'On-Board LED Configuration',
 	'on-board-led-mode-label': 'LED Mode',
+	'on-board-led-mode-placeholder-text': 'Placeholder text...',
 	'analog-header-text': 'Analog',
 	'analog-warning': 'Note: Analog sticks will override gamepad Left-Stick and Right-Stick inputs when enabled',
 	'analog-available-pins-text': 'Available pins: {{pins}}',
