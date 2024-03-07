@@ -184,7 +184,7 @@ void TurboInput::process()
         else {
             gpio_put(options.ledPin, (gamepad->state.buttons & turboButtonsPressed) && !bTurboFlicker);
         }
-
+    }
 
     // Button updates
     lastButtons = gamepad->state.buttons;
