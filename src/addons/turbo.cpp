@@ -174,17 +174,37 @@ void TurboInput::process()
     }
 
     // Set TURBO LED
+		// Using the LED to indicate turbo flicker state
+		//
     // OFF: No turbo buttons enabled
     // ON: 1 or more turbo buttons enabled
-    // BLINK: OFF on turbo shot, ON on turbo flicker
-    if (hasLedPin) {
-        if (turboButtonsPressed) {
-            gpio_put(options.ledPin, 1);
-        }
-        else {
-            gpio_put(options.ledPin, (gamepad->state.buttons & turboButtonsPressed) && !bTurboFlicker);
-        }
-    }
+    // BLINK: OFF on turbo shot, ON if turbo flicker is false and turbo buttons are pressed
+		//
+		// gamepad->state.buttons is the current state of the buttons
+		// turboButtonsPressed is the state of the turbo buttons
+		// hasLedPin is the state of the LED pin, we only want to set it if it's available
+		// gpio_put(options.ledPin, (gamepad->state.buttons & turboButtonsPressed) && !bTurboFlicker);
+    // Check if the LED pin is available
+		if (hasLedPin) {
+				// Determine the LED state
+				bool ledState = false;
+
+				// If no turbo buttons are enabled, the LED should be OFF
+				if (turboButtonsPressed == 0) {
+						ledState = false;
+				}
+				// If one or more turbo buttons are enabled, the LED should be ON
+				else if ((gamepad->state.buttons & turboButtonsPressed) != 0) {
+						ledState = true;
+				}
+				// If turbo flicker is false and turbo buttons are pressed, the LED should BLINK
+				else if (!bTurboFlicker && (gamepad->state.buttons & turboButtonsPressed) != 0) {
+						ledState = !ledState; // Toggle the LED state to create a blinking effect
+				}
+
+				// Set the LED state
+				gpio_put(options.ledPin, ledState);
+		}
 
     // Button updates
     lastButtons = gamepad->state.buttons;
