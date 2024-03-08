@@ -191,19 +191,18 @@ void TurboInput::process()
 
 				// If no turbo buttons are enabled, the LED should be OFF
 				if (turboButtonsPressed == 0) {
-						ledState = false;
+						gpio_put(options.ledPin, 0);
 				}
 				// If one or more turbo buttons are enabled, the LED should be ON
 				else if ((gamepad->state.buttons & turboButtonsPressed) != 0) {
-						ledState = true;
+						gpio_put(options.ledPin, 1);
 				}
 				// If turbo flicker is false and turbo buttons are pressed, the LED should BLINK
-				else if (!bTurboFlicker && (gamepad->state.buttons & turboButtonsPressed) != 0) {
-						ledState = !ledState; // Toggle the LED state to create a blinking effect
+				else {
+						gpio_put(options.ledPin, (gamepad->state.buttons & turboButtonsPressed) && !bTurboFlicker);
 				}
 
 				// Set the LED state
-				gpio_put(options.ledPin, ledState);
 		}
 
     // Button updates

@@ -108,7 +108,7 @@ private:
     uint16_t alwaysEnabled;     // Turbo SHMUP Always Enabled
     uint32_t uIntervalUS;       // Turbo Interval in microseconds
     uint32_t chargeState;       // Turbo Charge Button States
-    bool bTurboFlicker;         // Turbo Enable Buttons Toggle OFF Flag ??
+    bool bTurboFlicker;         // State for Turbo Flicker
     uint64_t nextTimer;         // Turbo Timer
     uint8_t adcShmupDial;       // Turbo ADC Dial Input
     uint64_t nextAdcRead;       // ADC read timer
