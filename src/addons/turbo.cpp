@@ -194,7 +194,7 @@ void TurboInput::process()
 						gpio_put(options.ledPin, 0);
 				}
 				// If one or more turbo buttons are enabled, the LED should be ON
-				else if ((gamepad->state.buttons & turboButtonsPressed) != 0) {
+				else if (gamepad->state.buttons == 0 && turboButtonsPressed != 0) {
 						gpio_put(options.ledPin, 1);
 				}
 				// If turbo flicker is false and turbo buttons are pressed, the LED should BLINK
