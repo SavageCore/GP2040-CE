@@ -1,0 +1,3 @@
+files:
+  - source: /www/src/Locales/en/*.jsx
+    translation: /www/src/Locales/%locale%/*.jsx
