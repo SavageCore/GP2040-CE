@@ -63,6 +63,7 @@ jobs:
           WaveshareZero,
           Stress,
           SGFDevices,
+          VenomEZ,
           ZeroRhythm]
 
     steps:
